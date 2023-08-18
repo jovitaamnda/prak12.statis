@@ -1,0 +1,8 @@
+df_jovita=read.delim("clipboard")
+df_jovita$brick_dummy <- ifelse(df_jovita$Brick =="Yes", 1,0)
+df_jovita$N_dummy1 <- ifelse(df_jovita$Neighborhood =="West", 1,0)
+df_jovita$N_dummy2 <- ifelse(df_jovita$Neighborhood =="North", 1,0)
+model=lm(df_jovita$Price~df_jovita$SqFt+df_jovita$Bedrooms+df_jovita$Bathrooms+df_jovita$brick_dummy+df_jovita$N_dummy1+df_jovita$N_dummy2)
+summary(model)
+by(df_jovita$Price, df_jovita$Neighborhood, mean)
+by(df_jovita$Price, df_jovita$Brick, mean)
